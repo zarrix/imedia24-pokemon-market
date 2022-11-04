@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPokemons } from '../../services/pokemonsService'
 import { getPokemonsAction } from '../../store/pokemons'
+import Loading from '../Loading/Loading'
 import PokemonCard from '../PokemonCard/PokemonCard'
 
 type Props = {}
@@ -10,12 +11,15 @@ function Market({ }: Props) {
 
     const pokemons = useSelector((state: any) => state)
     const dispatch = useDispatch()
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
+        setLoading(true)
         getPokemons(0, 30)
             .then(res => {
                 console.log(res);
                 dispatch(getPokemonsAction(res));
+                setLoading(false)
             })
             .catch(err => console.log(err));
     }, [])
@@ -44,7 +48,7 @@ function Market({ }: Props) {
             </div>
 
             {/* Pokemon Cards */}
-            <div className='pt-20 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-10 mx-auto'>
+            <div className='pt-20 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-2 gap-y-10 md:gap-10 mx-auto'>
                 {pokemons.map((pokemon: any, index: number) =>
                     <PokemonCard
                         key={pokemon.id}
@@ -52,6 +56,7 @@ function Market({ }: Props) {
                     />
                 )}
             </div>
+            {loading ? <Loading /> : null }
         </div>
     )
 }

@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import './PokemonCard.css'
 
 type Props = {
   pokemon: any
@@ -86,12 +85,12 @@ function PokemonCard({ pokemon }: Props) {
                   <Dialog.Title
                     as="button"
                     onClick={() => setIsModalOpen(false)}
-                    className="absolute top-1 right-1 text-lg font-medium leading-6 text-gray-900 text-right hover:opacity-50"
+                    className="absolute top-1 right-1 text-lg font-medium leading-6 text-gray-900 text-right hover:opacity-50 focus:outline-none"
                   >
                     <img src="https://img.icons8.com/color/48/null/cancel--v1.png" />
                   </Dialog.Title>
                   <div className='w-full h-full flex flex-col md:flex-row'>
-                    <div className='w-full md:w-[50%] flex flex-col items-center justify-center space-y-3 md:py-10' style={{ backgroundColor: bgColor }}>
+                    <div className='w-full md:w-[50%] flex flex-col items-center justify-center space-y-3 py-2 md:py-10' style={{ backgroundColor: bgColor }}>
                       <img
                         className={` w-full rounded-xl pt-16 pb-10 px-5 h-72 hover:p-0 overflow-hidden transition-all ease-in-out delay-100`}
                         src={pokemon.sprites.other.dream_world.front_default}
@@ -100,7 +99,7 @@ function PokemonCard({ pokemon }: Props) {
                         <img className='w-6' src="https://img.icons8.com/color/48/000000/pokeball-2.png" />
                         <h1 className='text-left text-md font-semibold font-mono'>{pokemon.name}</h1>
                       </div>
-                      <div className=' flex items-center justify-start space-x-2'>
+                      <div className='flex items-center justify-start space-x-2'>
                         {/* <h1 className='text-gray-500'>Types:</h1> */}
                         {pokemon.types.map((type: any) =>
                           <img className='w-6' src={typeIcons[type.type.name]} />
@@ -115,7 +114,7 @@ function PokemonCard({ pokemon }: Props) {
                             <span className="text-sm font-medium">{stat.base_stat}</span>
                           </div>
                           <div className="w-full bg-gray-200 rounded-full h-2.5">
-                            <div className={`bg-[#BE1A27] h-2.5 rounded-full`} style={{ width: stat.base_stat / 200 * 100 + '%' }}></div>
+                            <div className={`bg-[#BE1A27] h-2.5 rounded-full`} style={{ width: stat.base_stat + '%' }}></div>
                           </div>
                         </div>
                       )}
