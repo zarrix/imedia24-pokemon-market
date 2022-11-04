@@ -4,7 +4,7 @@ type Props = {}
 
 const Poster = (props: Props) => {
     return (
-        <div className="flex flex-col items-center justify-center p-10 font-mono bg-[url('../public/poster-background.svg')]">
+        <div className="flex flex-col items-center justify-center p-10 font-mono bg-[url('../public/poster-background.svg')] border-b-2 border-[#BE1A27]">
             {/* Title + Poster */}
             <div className='space-y-5'>
                 <div className='space-y-2'>
