@@ -1,8 +1,9 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
+import { IPokemon } from '../../types'
 
 type Props = {
-  pokemon: any
+  pokemon: IPokemon
 }
 
 const typeIcons: any = {
@@ -27,31 +28,32 @@ function generateRandomColor() {
   return `#${randColor.toUpperCase()}30`
 }
 
-function PokemonCard({ pokemon }: Props) {
+const PokemonCard = React.forwardRef(({ pokemon }: Props, ref: any)  => {
 
   const bgColor = generateRandomColor();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <div className='w-full flex flex-col items-center space-y-3'>
+    <div ref={ref} className='w-full flex flex-col items-center space-y-3'>
       {/* Image */}
       <img
         onClick={() => setIsModalOpen(true)}
+        alt="Pokemon"
         className='w-full rounded-xl pt-16 pb-10 px-5 h-72 hover:p-0 overflow-hidden transition-all ease-in-out delay-100'
         style={{ backgroundColor: bgColor }}
-        src={pokemon.sprites.other.dream_world.front_default}
+        src={pokemon.img}
       />
       {/* Information */}
       <div className='w-full flex items-center justify-start space-x-2 border-b-2 border-gray-200 border-dashed py-1'>
-        <img className='w-6' src="https://img.icons8.com/color/48/000000/pokeball-2.png" />
+        <img className='w-6' src="https://img.icons8.com/color/48/000000/pokeball-2.png" alt="Poke" />
         <h1 className='text-left text-md font-semibold font-mono'>{pokemon.name}</h1>
       </div>
       {/* Abilities */}
       <div className='w-full flex items-center justify-start space-x-2'>
         {/* <h1 className='text-gray-500'>Types:</h1> */}
-        {pokemon.types.map((type: any) =>
-          <img className='w-6' src={typeIcons[type.type.name]} />
+        {pokemon.types.map((type, index: number) =>
+          <img key={index} className='w-6' src={typeIcons[type.type.name]} alt='Type'/>
         )}
       </div>
 
@@ -87,28 +89,29 @@ function PokemonCard({ pokemon }: Props) {
                     onClick={() => setIsModalOpen(false)}
                     className="absolute top-1 right-1 text-lg font-medium leading-6 text-gray-900 text-right hover:opacity-50 focus:outline-none"
                   >
-                    <img src="https://img.icons8.com/color/48/null/cancel--v1.png" />
+                    <img src="https://img.icons8.com/color/48/null/cancel--v1.png" alt="Close" />
                   </Dialog.Title>
                   <div className='w-full h-full flex flex-col md:flex-row'>
                     <div className='w-full md:w-[50%] flex flex-col items-center justify-center space-y-3 py-2 md:py-10' style={{ backgroundColor: bgColor }}>
                       <img
+                        alt='Pokemon'
                         className={` w-full rounded-xl pt-16 pb-10 px-5 h-72 hover:p-0 overflow-hidden transition-all ease-in-out delay-100`}
-                        src={pokemon.sprites.other.dream_world.front_default}
+                        src={pokemon.img}
                       />
                       <div className='flex items-center justify-start space-x-2 border-b-2 border-gray-500 border-dashed py-1'>
-                        <img className='w-6' src="https://img.icons8.com/color/48/000000/pokeball-2.png" />
+                        <img alt="Poke" className='w-6' src="https://img.icons8.com/color/48/000000/pokeball-2.png" />
                         <h1 className='text-left text-md font-semibold font-mono'>{pokemon.name}</h1>
                       </div>
                       <div className='flex items-center justify-start space-x-2'>
                         {/* <h1 className='text-gray-500'>Types:</h1> */}
-                        {pokemon.types.map((type: any) =>
-                          <img className='w-6' src={typeIcons[type.type.name]} />
+                        {pokemon.types.map((type, index: number) =>
+                          <img alt='Type' key={index} className='w-6' src={typeIcons[type.type.name]} />
                         )}
                       </div>
                     </div>
                     <div className='w-full md:w-[50%] flex flex-col justify-center p-10 space-y-4'>
-                      {pokemon.stats.map((stat: any) =>
-                        <div className=''>
+                      {pokemon.stats.map((stat, index: number) =>
+                        <div key={index}>
                           <div className="flex justify-between mb-1 text-[#BE1A27]">
                             <span className="text-base font-medium">{stat.stat.name}</span>
                             <span className="text-sm font-medium">{stat.base_stat}</span>
@@ -131,6 +134,6 @@ function PokemonCard({ pokemon }: Props) {
 
     </div >
   )
-}
+})
 
 export default PokemonCard

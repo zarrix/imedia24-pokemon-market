@@ -5,11 +5,9 @@ import Header from './components/Header/Header';
 import Poster from './components/Poster/Poster';
 import Market from './components/Market/Market';
 import { useDispatch } from 'react-redux';
-import { getPokemonsAction } from './store/pokemons';
 
 function App() {
 
-  const dispatch = useDispatch();
 
   // React.useEffect(() => {
   //   dispatch(getPokemonsAction([
