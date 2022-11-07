@@ -7,18 +7,27 @@ type Props = {
 }
 
 const typeIcons: any = {
-  'grass': "https://img.icons8.com/color/48/null/grass.png",
-  'fire': "https://img.icons8.com/color/48/null/fire-element--v1.png",
-  'water': "https://img.icons8.com/color/48/null/water-element.png",
-  'bug': "https://img.icons8.com/color/48/null/insect.png",
   'normal': "https://img.icons8.com/color/48/null/superball.png",
-  'poison': "https://img.icons8.com/color/48/null/poison.png",
-  'electric': "https://img.icons8.com/color/48/null/lightning-bolt.png",
-  'ground': "https://img.icons8.com/color/48/null/hills.png",
-  'fairy': "https://img.icons8.com/color/48/null/fairy.png",
   'fightig': "https://img.icons8.com/color/48/null/armored-helmet.png",
   'flying': "https://img.icons8.com/color/48/null/wings.png",
+  'poison': "https://img.icons8.com/color/48/null/poison.png",
+  'ground': "https://img.icons8.com/color/48/null/hills.png",
   'rock': "https://img.icons8.com/color/48/null/rock.png",
+  'bug': "https://img.icons8.com/color/48/null/insect.png",
+  'ghost': "https://img.icons8.com/color/48/null/ghost--v1.png",
+  'steel': "https://img.icons8.com/color/48/null/metal.png",
+  'fire': "https://img.icons8.com/color/48/null/fire-element--v1.png",
+  'water': "https://img.icons8.com/color/48/null/water-element.png",
+  'grass': "https://img.icons8.com/color/48/null/grass.png",
+  'electric': "https://img.icons8.com/color/48/null/lightning-bolt.png",
+  'psychic': "https://img.icons8.com/color/48/null/cancer.png",
+  "ice": "https://img.icons8.com/color/48/null/cooling.png",
+  "dragon": "https://img.icons8.com/color/48/null/dragon.png",
+  "dark": "https://img.icons8.com/color/48/null/states.png",
+  'fairy': "https://img.icons8.com/color/48/null/fairy.png",
+  'unknown': "https://img.icons8.com/color/48/null/question-mark.png",
+  'shadow': "https://img.icons8.com/color/48/null/shadow-vessel.png"
+  
 }
 
 function generateRandomColor() {
@@ -53,7 +62,7 @@ function PokemonCard({ pokemon }: Props )  {
       <div className='w-full flex items-center justify-start space-x-2'>
         {/* <h1 className='text-gray-500'>Types:</h1> */}
         {pokemon.types.map((type, index: number) =>
-          <img key={index} className='w-6' src={typeIcons[type.type.name]} alt='Type'/>
+          <img key={index} className='w-6' src={typeIcons[type.type.name] || "https://img.icons8.com/color/48/null/question-mark.png"} alt='Type'/>
         )}
       </div>
 

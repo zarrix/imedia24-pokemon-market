@@ -15,11 +15,16 @@ async function getPokemonByName(name: string): Promise<IPokemon> {
 }
 
 export async function getPokemons(offset: number) {
-    const pokemons: IPokemon[] = [];
+    // const pokemons: IPokemon[] = [];
     const pokes = (await axios.get(`${API_URL}/pokemon?offset=${offset}`)).data.results;
-    for (let poke of pokes) {
-        const pokemon =  await getPokemonByName(poke.name);
-        pokemons.push(pokemon);
-    }
+    // for (let poke of pokes) {
+    //     const pokemon =  await getPokemonByName(poke.name);
+    //     pokemons.push(pokemon);
+    // }
+    const pokemons: IPokemon[] = await Promise.all(
+        pokes.map(async (poke: any) => {
+            return await getPokemonByName(poke.name)
+        })
+    );
     return pokemons;
 }
