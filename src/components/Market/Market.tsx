@@ -1,4 +1,4 @@
-import { ReactNode, RefObject, useCallback, useEffect, useRef } from 'react'
+import { ReactNode, useCallback, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPokemonsRequestAction } from '../../store/pokemons/pokemons'
 import { IPokemon } from '../../types'

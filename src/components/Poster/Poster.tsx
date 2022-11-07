@@ -22,19 +22,19 @@ const Poster = (props: Props) => {
             <div className='bg-white border-2 border-gray-300 rounded p-5 space-y-4'>
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-4 font-semibold font-mono'>
                     <div className='text-left flex space-x-2 items-center'>
-                        <img className='w-8 md:w-10' src="https://img.icons8.com/color/48/000000/coins.png" />
+                        <img className='w-8 md:w-10' src="https://img.icons8.com/color/48/000000/coins.png" alt='' />
                         <h2 className='text-sm md:text-md'>Buy & sell Pokemom with our community</h2>
                     </div>
                     <div className='text-left flex space-x-1 items-center'>
-                        <img className='w-8 md:w-10' src="https://img.icons8.com/color/48/000000/human-torch.png" />
+                        <img className='w-8 md:w-10' src="https://img.icons8.com/color/48/000000/human-torch.png" alt='' />
                         <h2 className='text-sm md:text-md'>Get the most powerful and beatufil pokemons</h2>
                     </div>
                     <div className='text-left flex space-x-1 items-center'>
-                        <img className='w-8 md:w-10' src="https://img.icons8.com/color/48/000000/wedding-gift.png" />
+                        <img className='w-8 md:w-10' src="https://img.icons8.com/color/48/000000/wedding-gift.png" alt='' />
                         <h2 className='text-sm md:text-md'>Buy pokemons and earn rewards</h2>
                     </div>
                     <div className='text-left flex space-x-1 items-center'>
-                        <img className='w-8 md:w-10' src="https://img.icons8.com/color/48/000000/pokeball-2.png" />
+                        <img className='w-8 md:w-10' src="https://img.icons8.com/color/48/000000/pokeball-2.png" alt='' />
                         <h2 className='text-sm md:text-md'>Chase limited and rare editions</h2>
                     </div>
                 </div>
