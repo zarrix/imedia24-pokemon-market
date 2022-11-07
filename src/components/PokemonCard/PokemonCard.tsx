@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { IPokemon } from '../../types'
 
@@ -28,19 +28,19 @@ function generateRandomColor() {
   return `#${randColor.toUpperCase()}30`
 }
 
-const PokemonCard = React.forwardRef(({ pokemon }: Props, ref: any)  => {
-
-  const bgColor = generateRandomColor();
+function PokemonCard({ pokemon }: Props )  {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  let [bgColor, setBgColor] = useState(generateRandomColor())
+
 
   return (
-    <div ref={ref} className='w-full flex flex-col items-center space-y-3'>
+    <div role="pokemonCard" className='w-full flex flex-col items-center space-y-3'>
       {/* Image */}
       <img
         onClick={() => setIsModalOpen(true)}
-        alt="Pokemon"
-        className='w-full rounded-xl pt-16 pb-10 px-5 h-72 hover:p-0 overflow-hidden transition-all ease-in-out delay-100'
+        alt={"Pokemon" + pokemon.id}
+        className='w-full rounded-xl pt-16 pb-10 px-5 h-72 hover:p-0 hover:cursor-pointer overflow-hidden transition-all ease-in-out delay-100'
         style={{ backgroundColor: bgColor }}
         src={pokemon.img}
       />
@@ -94,7 +94,7 @@ const PokemonCard = React.forwardRef(({ pokemon }: Props, ref: any)  => {
                   <div className='w-full h-full flex flex-col md:flex-row'>
                     <div className='w-full md:w-[50%] flex flex-col items-center justify-center space-y-3 py-2 md:py-10' style={{ backgroundColor: bgColor }}>
                       <img
-                        alt='Pokemon'
+                        alt='Modal Pokemon'
                         className={` w-full rounded-xl pt-16 pb-10 px-5 h-72 hover:p-0 overflow-hidden transition-all ease-in-out delay-100`}
                         src={pokemon.img}
                       />
@@ -134,6 +134,6 @@ const PokemonCard = React.forwardRef(({ pokemon }: Props, ref: any)  => {
 
     </div >
   )
-})
+}
 
 export default PokemonCard

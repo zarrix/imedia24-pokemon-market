@@ -1,22 +1,21 @@
 
 describe('Pokemon Market e2e Test', () => {
-  it('should show list of pokemons', () => {
+  it('should show list of pokemons with infinite scroll', () => {
+
     // open application
-    cy.visit('http://localhost:3001')
-    
-    // fill the authentication form
-    cy.findByRole('textbox', { name: /username/i }).type('admin');
-    cy.findByLabelText(/Password/i).type('1234');
-    cy.findByRole('button', { name: /se connecter/i }).click();
+    cy.visit('http://localhost:3002/')
 
-    // verify Home page
-    cy.findByText(/tableau de bord/i).should('be.visible');
+    // no pokemon cards at first
+    cy.findByRole('pokemonCards').should("be.empty")
 
-    // sign out
-    cy.findByRole('img', { name: /profile image/i }).click();
-    cy.findByRole('button', { name: /sign out/i }).click()
+    cy.wait(8000)
 
-    //verify login page
-    cy.findByRole('heading', { name: /connexion/i }).should('be.visible');
+    // should show pokemon cards
+    cy.findAllByRole('pokemonCard').should("have.length", 20)
+
+    //should show more pokemon cards when scrolled to the bottom
+    cy.scrollTo(0, 5000);
+    cy.wait(8000)
+    cy.findAllByRole('pokemonCard').should("have.length", 40)
   })
 })

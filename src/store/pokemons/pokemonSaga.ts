@@ -10,7 +10,7 @@ import { getPokemonsSuccessAction } from "./pokemons";
 function* getPokemonsSaga(action: AnyAction) {
     yield put(apiRequestPendingAction());
     try {
-        const pokemons: IPokemon[] = yield call(getPokemons, action.payload.offset, 20);
+        const pokemons: IPokemon[] = yield call(getPokemons, action.payload.offset);
         yield put(getPokemonsSuccessAction(pokemons));
         yield put(apiRequestFinishedAction());
     } catch (e) {

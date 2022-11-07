@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useEffect, useRef } from 'react'
+import { ReactNode, RefObject, useCallback, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPokemonsRequestAction } from '../../store/pokemons/pokemons'
 import { IPokemon } from '../../types'
@@ -17,7 +17,7 @@ function Market() {
     const dispatch = useDispatch()
 
     const observer: any = useRef();
-    const lastPokemonCardRef = useCallback((node: ReactNode) => {
+    const lastPokemonCardRef: any = useCallback((node: ReactNode) => {
         if (loading) return
         if (observer.current) observer.current.disconnect()
         observer.current = new IntersectionObserver(entries => {
@@ -39,7 +39,7 @@ function Market() {
             <div className='flex flex-col md:flex-row justify-between items-center space-y-5 md:space-y-0'>
                 <a href="#" className="flex items-center">
                     <img src="/imedia24-logo.png" className="mr-3 h-10 sm:h-20" alt="Flowbite Logo" />
-                    <span className="self-center text-4xl font-semibold whitespace-nowrap">
+                    <span className="self-center text-3xl lg:text-4xl font-semibold whitespace-nowrap">
                         PokeMedia <span className='text-[#BE1A27]'>Market</span>
                     </span>
                 </a>
@@ -56,19 +56,18 @@ function Market() {
             </div>
 
             {/* Pokemon Cards */}
-            <div className='pt-20 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-2 gap-y-10 md:gap-10 mx-auto'>
+            <div role="pokemonCards" className='pt-20 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-2 gap-y-10 md:gap-10 mx-auto'>
                 {pokemons.map((pokemon, index: number) => {
                     if (index === pokemons.length - 1) {
-                        return <PokemonCard
-                            ref={lastPokemonCardRef}
+                        return <div ref={lastPokemonCardRef}><PokemonCard
                             key={pokemon.id}
                             pokemon={pokemon}
-                        />
+                        /></div>
                     }
-                    return <PokemonCard
+                    return <div><PokemonCard
                         key={pokemon.id}
                         pokemon={pokemon}
-                    />
+                    /></div>
                 })}
             </div>
             {loading ? <Loading /> : null}
