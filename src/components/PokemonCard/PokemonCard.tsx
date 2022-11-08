@@ -114,7 +114,7 @@ function PokemonCard({ pokemon }: Props )  {
                       <div className='flex items-center justify-start space-x-2'>
                         {/* <h1 className='text-gray-500'>Types:</h1> */}
                         {pokemon.types.map((type, index: number) =>
-                          <img alt='Type' key={index} className='w-6' src={typeIcons[type.type.name]} />
+                          <img alt='Type' key={index} className='w-6' src={typeIcons[type.type.name] || "https://img.icons8.com/color/48/null/question-mark.png"} />
                         )}
                       </div>
                     </div>
