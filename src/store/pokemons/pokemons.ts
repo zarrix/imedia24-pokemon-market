@@ -2,9 +2,9 @@ import { ActionCreator, AnyAction } from "redux";
 import { IPokemon } from "../../types";
 
 // Actions Types
-const GET_POKEMONS_REQUEST = 'GET_POKEMONS_REQUEST';
-const GET_POKEMONS_SUCCESS = 'GET_POKEMONS_SUCCESS';
-const GET_POKEMONS_FAILURE = 'GET_POKEMONS_FAILURE';
+export const GET_POKEMONS_REQUEST = 'GET_POKEMONS_REQUEST';
+export const GET_POKEMONS_SUCCESS = 'GET_POKEMONS_SUCCESS';
+export const GET_POKEMONS_FAILURE = 'GET_POKEMONS_FAILURE';
 
 // Actions Creators
 export const getPokemonsSuccessAction: ActionCreator<AnyAction> = (pokemons: IPokemon[]) => ({
@@ -18,6 +18,13 @@ export const getPokemonsRequestAction: ActionCreator<AnyAction> = (offset) => ({
     type: GET_POKEMONS_REQUEST,
     payload: {
         offset
+    }
+});
+
+export const getPokemonsFailureAction: ActionCreator<AnyAction> = (error) => ({
+    type: GET_POKEMONS_FAILURE,
+    payload: {
+        error
     }
 });
 

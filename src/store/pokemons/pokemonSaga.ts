@@ -4,7 +4,7 @@ import { getPokemons } from "../../services/pokemonsService";
 import { IPokemon } from "../../types";
 import { apiRequestFinishedAction, apiRequestPendingAction } from "../loading/loading";
 
-import { getPokemonsSuccessAction } from "./pokemons";
+import { getPokemonsFailureAction, getPokemonsSuccessAction, GET_POKEMONS_REQUEST } from "./pokemons";
 
 
 function* getPokemonsSaga(action: AnyAction) {
@@ -14,12 +14,13 @@ function* getPokemonsSaga(action: AnyAction) {
         yield put(getPokemonsSuccessAction(pokemons));
         yield put(apiRequestFinishedAction());
     } catch (e) {
+        yield put(getPokemonsFailureAction());
         yield put(apiRequestFinishedAction());
     }
 }
 
 function* pokemonSaga() {
-    yield takeEvery("GET_POKEMONS_REQUEST", getPokemonsSaga);
+    yield takeEvery(GET_POKEMONS_REQUEST, getPokemonsSaga);
 }
 
 export default pokemonSaga;
