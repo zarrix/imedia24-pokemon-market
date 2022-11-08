@@ -8,7 +8,7 @@ type Props = {
 
 const typeIcons: any = {
   'normal': "https://img.icons8.com/color/48/null/superball.png",
-  'fightig': "https://img.icons8.com/color/48/null/armored-helmet.png",
+  'fighting': "https://img.icons8.com/color/48/null/armored-helmet.png",
   'flying': "https://img.icons8.com/color/48/null/wings.png",
   'poison': "https://img.icons8.com/color/48/null/poison.png",
   'ground': "https://img.icons8.com/color/48/null/hills.png",
