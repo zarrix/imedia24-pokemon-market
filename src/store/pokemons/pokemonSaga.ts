@@ -12,9 +12,9 @@ function* getPokemonsSaga(action: AnyAction) {
     try {
         const pokemons: IPokemon[] = yield call(getPokemons, action.payload.offset);
         yield put(getPokemonsSuccessAction(pokemons));
-        yield put(apiRequestFinishedAction());
     } catch (e) {
         yield put(getPokemonsFailureAction());
+    } finally {
         yield put(apiRequestFinishedAction());
     }
 }
